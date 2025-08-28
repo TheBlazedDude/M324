@@ -3,6 +3,7 @@ package ch.bbw.BenBrc;
 import ch.bbw.BenBrc.model.Calculator;
 import ch.bbw.BenBrc.module.ModuleManager;
 import ch.bbw.BenBrc.module.PowerModule;
+import ch.bbw.BenBrc.module.SquareRootModule;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -28,6 +29,7 @@ public class App extends Application {
     public App() {
         // Load modules
         moduleManager.loadModule(new PowerModule());
+        moduleManager.loadModule(new SquareRootModule());
     }
 
     @Override
@@ -87,6 +89,11 @@ public class App extends Application {
             grid.add(createButton("^"), 0, 0);
         }
 
+        // Add square root button if the operation is supported
+        if (calculator.supportsOperation("sqrt")) {
+            grid.add(createButton("sqrt"), 1, 0);
+        }
+
         return grid;
     }
 
@@ -125,12 +132,30 @@ public class App extends Application {
             case "^":  // Add support for power operation
                 handleOperator(buttonText);
                 break;
+            case "sqrt":  // Add support for square root operation
+                handleSquareRoot();
+                break;
             case "=":
                 calculateResult();
                 break;
             case "C":
                 clearCalculator();
                 break;
+        }
+    }
+
+    private void handleSquareRoot() {
+        if (!currentInput.isEmpty()) {
+            try {
+                double operand = Double.parseDouble(currentInput);
+                double result = calculator.performOperation("sqrt", operand);
+                currentInput = formatResult(result);
+                display.setText(currentInput);
+                startNewInput = true;
+            } catch (ArithmeticException e) {
+                display.setText("Error: " + e.getMessage());
+                clearCalculator();
+            }
         }
     }
 

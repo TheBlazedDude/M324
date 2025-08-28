@@ -7,6 +7,7 @@ A simple calculator application with a JavaFX UI that can be extended with modul
 - Basic mathematical operations: addition, subtraction, multiplication, division
 - Extensible architecture that allows adding new operations through modules
 - Sample power operation module included
+- Square root operation module included as a Git submodule
 
 ## Project Structure
 
@@ -16,6 +17,10 @@ The project is organized into the following packages:
 - `ch.bbw.BenBrc.model`: Contains the calculator model and operation interfaces
 - `ch.bbw.BenBrc.model.operations`: Contains the concrete operation implementations
 - `ch.bbw.BenBrc.module`: Contains the module system
+
+The project also includes a Git submodule:
+
+- `calculator-operations-module`: Contains additional operations for the calculator
 
 ## How to Use
 
@@ -62,6 +67,18 @@ The calculator can be extended with new operations by creating modules. Here's h
 2. Create a new module class that implements the `CalculatorModule` interface
 3. Register the operation in the module's `initialize` method
 4. Load the module in the application
+
+### Using Git Submodules
+
+You can also extend the calculator by adding Git submodules. Here's how:
+
+1. Create a new Git repository for your calculator operations
+2. Implement the operations and modules in the repository
+3. Add the repository as a Git submodule to the main project:
+   ```
+   git submodule add <repository-url>
+   ```
+4. Update the main project to use the operations from the submodule
 
 ### Example: Adding a Square Root Operation
 
