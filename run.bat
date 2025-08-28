@@ -1,0 +1,3 @@
+@echo off
+echo Running Calculator Application...
+mvn javafx:run
