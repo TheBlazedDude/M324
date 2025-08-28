@@ -2,6 +2,8 @@
 
 A simple calculator application with a JavaFX UI that can be extended with modules.
 
+*Repository moved to new location: https://github.com/TheBlazedDude/M324.git*
+
 ## Features
 
 - Basic mathematical operations: addition, subtraction, multiplication, division
